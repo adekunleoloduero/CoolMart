@@ -15,5 +15,6 @@ app.get('/', (req, res) => {
 });
 
 
-app.listen(config.PORT, () => {console.log(`Server is running on port: ${config.PORT}`)});
+
+module.exports = app;
 
