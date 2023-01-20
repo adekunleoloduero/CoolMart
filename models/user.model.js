@@ -10,7 +10,8 @@ const userSchema = new Schema({
         required: true, 
         unique: true
     },
-    password: {type: String, 
+    password: {
+        type: String, 
         required: true
     },
     isAdmin: {
