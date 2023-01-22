@@ -5,7 +5,6 @@ require('dotenv').config();
 
 const signUp = async(req, res, next) => {
     const payload = req.body;
-    console.log(payload);
     try {
         const response = await authServices.signUp(payload);
         if (!response.status) {
