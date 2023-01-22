@@ -48,7 +48,7 @@ const signIn = async(payload) => {
     const { _id, email, isAdmin } = user;
     const tokenObject = { _id, email, isAdmin };
 
-    const token = jwt.sign(tokenObject, config.JWT_SECRET, { expiresIn: '1hr'})
+    const token = jwt.sign(tokenObject, config.JWT_SECRET);
 
     const { password, ...others } = user._doc; //Remove password from user object
 

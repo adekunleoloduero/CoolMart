@@ -1,15 +1,18 @@
 const express = require('express');
 const config = require('./configs/config');
 const router = require('./routes/index');
-const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 
 
 
 const app = express();
 
-
+//Body parser middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+//Cookie parser middleware
+app.use(cookieParser());
 
 
 //Routes
