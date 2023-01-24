@@ -12,8 +12,8 @@ const signUp = async(req, res, next) => {
         } else {
             return res.status(201).json(response);    
         }
-    } catch(error) {
-        next(error);
+    } catch(err) {
+        next(err);
     }
 }
 
@@ -27,11 +27,11 @@ const signIn = async(req, res, next) => {
         } else {
             return res.cookie("access_token", response.token, {
                 httpOnly: true,
-                secure: process.env.NODE_ENV === 'prod'
+                secure: process.env.NODE_ENV === 'production'
             }).status(200).json({ message: "Logged in successfully."});
         }
-    } catch(error) {
-        next(error);
+    } catch(err) {
+        next(err);
     }
 }
 
