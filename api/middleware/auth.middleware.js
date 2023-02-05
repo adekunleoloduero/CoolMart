@@ -2,12 +2,14 @@ const jwt = require('jsonwebtoken');
 const config = require('../configs/config');
 
 
-const authentication = (req, res, next) => {
+
+//Retrieves and verify access token 
+const authenticateUser = (req, res, next) => {
     const token = req.cookies.access_token;
     if (token) {
-        jwt.verify(accessToken, config.JWT_SECRET, (err, data) => {
+        jwt.verify(token, config.JWT_SECRET, (err, data) => {
             if (err) {
-                return res.status(403).json('Invalid access token.');
+                return res.status(403).json('Invalid Access Token.');
             }
             req.user = data; //Add information about user contained in token, to the req object
             next();
@@ -19,25 +21,31 @@ const authentication = (req, res, next) => {
 }
 
 
+//Authorize either current user or an Admin
 const authorizeUserOrAdmin = (req, res, next) => {
-    authentication(req, res, () => {
-        const user = req.user;
-        if (user.id == req.params.id || user.isAdmin) {
-            next();
-        } else {
-            return res.status(401).json({ message: 'Unauthorized' });
-        }
-    })
+    const user = req.user;
+    if (user._id == req.params.userId || user.isAdmin) {
+        next();
+    } else {
+        return res.status(401).json({ message: 'Unauthorized' });
+    }
 }
 
 
-const authorizeAdmin = (req, res, next) => {
-    authentication(req, res, () => {
-        const user = req.user;
-        if (user.isAdmin) {
-            next();
-        } else {
-            return res.status(401).json({ message: 'Unauthorized' });
-        }
-    })
+//Authorize an admin
+const authorizeAdminOnly = (req, res, next) => {
+    const user = req.user;
+    if (user.isAdmin) {
+        next();
+    } else {
+        return res.status(401).json({ message: 'Unauthorized' });
+    }
+}
+
+
+
+module.exports = {
+    authenticateUser,
+    authorizeUserOrAdmin,
+    authorizeAdminOnly
 }

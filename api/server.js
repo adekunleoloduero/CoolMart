@@ -10,7 +10,7 @@ const app = express();
 
 //Body parser middleware
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 
 //Cookie parser middleware
 app.use(cookieParser());
@@ -21,7 +21,7 @@ app.use('/api/auth', router.authRouter);
 app.use('/api/users', router.userRouter);
 app.use('/api/products', router.productRouter);
 app.use('/api/orders', router.orderRouter);
-app.use('/api/cart', router.cartRouter);
+app.use('/api/carts', router.cartRouter);
 
 
 //Home route
@@ -37,7 +37,7 @@ app.use((err, req, res, next) => {
     const errMsg = err.message || 'Internal Server Error.';
     console.log({
         status: errStatus,
-        message,
+        message: errMsg,
         stack: process.env.NODE_ENV === 'development' ? err.stack : {}
     })
     res.status(errStatus).json({message: errMsg });

@@ -24,7 +24,9 @@ const userSchema = new Schema({
     isAdmin: {
         type: Boolean, 
         default: false
-    }
+    },
+    phoneNumber: String,
+    address: String
 }, {
     timestamps: true
 });

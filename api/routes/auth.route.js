@@ -1,17 +1,16 @@
 const router = require('express').Router();
 const { authController } = require('../controllers/index');
-const { signUp, signIn, logOut } = authController;
 
 
 //Sign up
-router.post('/signup', signUp);
+router.post('/signup', authController.signUp);
 
 
 //Sign in
-router.post('/signin', signIn);
+router.post('/signin', authController.signIn);
 
 //Logout
-router.post('/logout', logOut);
+router.post('/logout', authController.logOut);
 
 
 
