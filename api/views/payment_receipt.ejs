@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coolmart</title>
+</head>
+<body>
+    <main>
+        <h1>Receipt</h1>
+        <p>Thank you for trusting Coolmart. Your payment has been received and your order is being processed.</p>
+        <!-- <h3>Payment Details</h3> -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Payment Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Reference:</td>
+                    <td><%= reference %></td>
+                </tr>
+                <tr>
+                    <td>Paid on:</td>
+                    <td><%= paidOn %></td>
+                </tr>
+                <tr>
+                    <td>Amount:</td>
+                    <td>NGN <%= amount %></td>
+                </tr>
+                <tr>
+                    <td>Fullname:</td>
+                    <td><%= fullname %></td>
+                </tr>
+                <tr>
+                    <td>Billing Address:</td>
+                    <td><%= address %></td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>

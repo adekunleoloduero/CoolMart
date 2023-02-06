@@ -1,7 +1,6 @@
 const orderModel = require('../models/order.model');
 
 
-
 const createOrder = async(payload) => {
     const order = await orderModel.create(payload);
     return order;
@@ -34,6 +33,19 @@ const getUserOrders = async(userId) => {
 }
 
 
+const getUserOrderById = async (orderId, userId) => {
+    const order = await orderModel.findOne({_id: orderId, user: userId})
+    .populate("user", "-password")
+    .populate({
+        path: "products",
+        populate: {
+            path: "product"
+        }
+    });
+    return order;
+}
+
+
 const updateOrder = async(id, body) => {
     const order = await orderModel.findByIdAndUpdate(id, { $set: body}, { new: true });
     return order;
@@ -50,6 +62,7 @@ module.exports = {
     createOrder,
     getOrders,
     getUserOrders,
+    getUserOrderById,
     updateOrder,
     deleteOrder
 }

@@ -45,8 +45,8 @@ const signIn = async(payload) => {
         return response;
     }
 
-    const { _id, email, isAdmin } = user;
-    const tokenObject = { _id, email, isAdmin };
+    const { _id, email, role } = user;
+    const tokenObject = { _id, email, role };
 
     const token = jwt.sign(tokenObject, config.JWT_SECRET);
 

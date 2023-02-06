@@ -21,12 +21,19 @@ const userSchema = new Schema({
         type: String, 
         required: true
     },
-    isAdmin: {
-        type: Boolean, 
-        default: false
+    role: {
+        type: String,
+        enum: ["admin", "customer"], 
+        default: "customer"
     },
-    phoneNumber: String,
-    address: String
+    phoneNumber: {
+        type: String,
+        default: '',
+    },
+    address: {
+        type: String,
+        default: '',
+    }
 }, {
     timestamps: true
 });

@@ -16,19 +16,25 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 
+//Views
+app.set("view engine", "ejs");
+app.set("views", "views");
+
+
 //Routes
 app.use('/api/auth', router.authRouter);
 app.use('/api/users', router.userRouter);
 app.use('/api/products', router.productRouter);
 app.use('/api/orders', router.orderRouter);
 app.use('/api/carts', router.cartRouter);
+app.use('/paystack', router.paystackRouter);
+
 
 
 //Home route
 app.get('/api', (req, res) => {
     return res.json({ message: 'Welcome to the homepage' });
 });
-
 
 
 //Error middleware

@@ -23,7 +23,7 @@ const getOrders = async (req, res, next) => {
 }
 
 
-const getUserOrders= async(req, res, next) => {
+const getUserOrders = async(req, res, next) => {
     const userId = req.params.userId;
     try {
         const response = await orderServices.getUserOrders(userId);
@@ -32,6 +32,7 @@ const getUserOrders= async(req, res, next) => {
         next(err);
     }
 }
+
 
 
 const updateOrder = async(req, res, next) => {
@@ -57,10 +58,16 @@ const deleteOrder = async(req, res, next) => {
 }
 
 
+const processingOrder = async (req, res, next) => {
+    res.render('order_processing_paystack');
+}
+
+
 module.exports = {
     createOrder,
     getOrders,
     getUserOrders,
     updateOrder,
-    deleteOrder
+    deleteOrder,
+    processingOrder
 }

@@ -3,6 +3,7 @@ const userRouter = require('./users.route');
 const productRouter = require('./products.route');
 const orderRouter = require('./orders.route');
 const cartRouter = require('./cart.route');
+const paystackRouter = require('./paystack.route');
 
 
 const router = {
@@ -10,7 +11,8 @@ const router = {
     userRouter,
     productRouter,
     orderRouter,
-    cartRouter
+    cartRouter,
+    paystackRouter
 }
 
 

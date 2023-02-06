@@ -24,5 +24,9 @@ router.put('/update/:id', authenticateUser, authorizeAdminOnly, orderController.
 router.delete('/clear/:id', authenticateUser, authorizeAdminOnly, orderController.deleteOrder);
 
 
+//Processing order
+router.get('/processing_order', authenticateUser, orderController.processingOrder);
+
+
 module.exports = router;
 

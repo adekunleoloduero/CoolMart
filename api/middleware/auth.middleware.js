@@ -24,7 +24,7 @@ const authenticateUser = (req, res, next) => {
 //Authorize either current user or an Admin
 const authorizeUserOrAdmin = (req, res, next) => {
     const user = req.user;
-    if (user._id == req.params.userId || user.isAdmin) {
+    if (user._id == req.params.userId || user.role == 'admin') {
         next();
     } else {
         return res.status(401).json({ message: 'Unauthorized' });
@@ -35,7 +35,7 @@ const authorizeUserOrAdmin = (req, res, next) => {
 //Authorize an admin
 const authorizeAdminOnly = (req, res, next) => {
     const user = req.user;
-    if (user.isAdmin) {
+    if (user.role == 'admin') {
         next();
     } else {
         return res.status(401).json({ message: 'Unauthorized' });
