@@ -1,1 +1,1 @@
-# satmart
+# CoolMart
