@@ -34,33 +34,10 @@ const deleteUser = async(id) => {
     return { message:  'Account deleted successfully.'};
 }
 
-//Return the number of users that registered for each month in the current year
-const getUsersStats = async () => {
-    const date = new Date();
-    const lastYear = new Date(date.setFullYear(date.getFullYear() - 1));
-    const stats = await userModel.aggregate([
-        { 
-            $match: { createdAt: { $gte: lastYear } }
-        },
-        { 
-            $project: { month: { $month: '$createdAt' } }
-        },
-        { 
-            $group: { _id: '$month', total: { $sum: 1} }
-        },
-        {
-            $sort: { _id: -1}
-        }
-    ]);
-    return stats;
-}
-
-
 
 module.exports = {
     getUsers,
     getUserById,
     updateUserProfile,
-    deleteUser,
-    getUsersStats,
+    deleteUser
 }

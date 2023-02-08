@@ -22,8 +22,6 @@ router.put('/update/:id', authenticateUser, authorizeUserOrAdmin, userController
 router.delete('/delete/:id', authenticateUser, authorizeUserOrAdmin, userController.deleteUser);
 
 
-//Get statistics of users that registered for each month in the current year
-router.get('/stats', authenticateUser, authorizeAdminOnly, userController.getUsersStats);
 
 
 module.exports = router;

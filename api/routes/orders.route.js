@@ -21,7 +21,7 @@ router.put('/update/:id', authenticateUser, authorizeAdminOnly, orderController.
 
 
 //Delete an order
-router.delete('/clear/:id', authenticateUser, authorizeAdminOnly, orderController.deleteOrder);
+router.delete('/delete/:id', authenticateUser, authorizeAdminOnly, orderController.deleteOrder);
 
 
 //Processing order

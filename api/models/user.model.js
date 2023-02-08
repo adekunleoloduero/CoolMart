@@ -28,11 +28,17 @@ const userSchema = new Schema({
     },
     phoneNumber: {
         type: String,
-        default: '',
+        default: ''
     },
     address: {
         type: String,
-        default: '',
+        default: ''
+    },
+    resetToken: {
+        type: String
+    },
+    resetTokenExpiration: {
+        type: Date
     }
 }, {
     timestamps: true

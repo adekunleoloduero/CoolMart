@@ -47,20 +47,9 @@ const deleteUser = async(req, res, next) => {
 }
 
 
-const getUsersStats = async(req, res, next) => {
-    try {
-        const response = await userServices.getUsersStats();
-        return res.status(200).json(response);
-    } catch(err) {
-        next(err);
-    }
-}
-
-
 module.exports = {
     getUsers,
     getUserById,
     updateUserProfile,
     deleteUser,
-    getUsersStats
 }

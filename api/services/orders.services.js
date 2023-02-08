@@ -54,7 +54,7 @@ const updateOrder = async(id, body) => {
 const deleteOrder = async(id) => {
     const deletedOrder = await orderModel.findByIdAndDelete(id);
     if (!deletedOrder) return { message: 'Order already deleted.' };
-    return { message:  'The order has been cleared.'};
+    return { message:  'The order has been deleted.'};
 }
 
 

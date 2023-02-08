@@ -1,14 +1,14 @@
 const config = require('./config');
 
 const paystack = (request) => {
-    const PAYSTACK_SECRET = `Bearer ${config.PAYSTACK_SECRET}`;
+    const PAYSTACK_SECRET_KEY = `Bearer ${config.PAYSTACK_SECRET_KEY}`;
 
     //Initializes payment and returns authorizationn URL to complete payment on paystack
     const initializePayment = (form, cb) => {
         const option = {
             url: 'https://api.paystack.co/transaction/initialize',
             headers: {
-                authorization: PAYSTACK_SECRET,
+                authorization: PAYSTACK_SECRET_KEY,
                 'content-type': 'application/json',
                 'cache-control': 'no-cache'
            },
@@ -25,7 +25,7 @@ const paystack = (request) => {
         const option = {
             url : 'https://api.paystack.co/transaction/verify/' + encodeURIComponent(ref),
             headers : {
-                authorization: PAYSTACK_SECRET,
+                authorization: PAYSTACK_SECRET_KEY,
                 'content-type': 'application/json',
                 'cache-control': 'no-cache'
            }

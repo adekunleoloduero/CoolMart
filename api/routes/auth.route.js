@@ -12,6 +12,15 @@ router.post('/signin', authController.signIn);
 //Logout
 router.post('/logout', authController.logOut);
 
+//Request password request link
+router.post('/reset-password', authController.initiatePasswordReset);
+
+
+router.get('/:userId/:token', authController.getResetToken)
+
+//Update password
+router.patch('/change-password', authController.changePassword);
+
 
 
 module.exports = router;

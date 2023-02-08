@@ -22,7 +22,7 @@ app.set("views", "views");
 
 
 //Routes
-app.use('/api/auth', router.authRouter);
+app.use('/auth', router.authRouter);
 app.use('/api/users', router.userRouter);
 app.use('/api/products', router.productRouter);
 app.use('/api/orders', router.orderRouter);
@@ -32,7 +32,7 @@ app.use('/paystack', router.paystackRouter);
 
 
 //Home route
-app.get('/api', (req, res) => {
+app.get('/', (req, res) => {
     return res.json({ message: 'Welcome to the homepage' });
 });
 
