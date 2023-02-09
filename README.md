@@ -1274,7 +1274,8 @@ Response:
         "updatedAt": "2023-02-08T20:43:46.390Z",
         "__v": 0
     }
-]```
+]
+```
 POSSIBLE ERRORS
 
 _User is not logged in_
@@ -2027,9 +2028,8 @@ Response:
 SUCCESS
 
 Response:
-```json
-https://checkout.paystack.com/45wn37kwjj8knyv
-```
+`https://checkout.paystack.com/45wn37kwjj8knyv`
+
 POSSIBLE ERRORS
 
 _User is not logged in_
