@@ -16,7 +16,7 @@ const initializePaymentOnPaystack = async (req, res, next) => {
     const orderId = req.params.orderId;
     const userId = req.user._id;
     try {
-        order = await orderServices.getUserOrderById(orderId, userId);
+        order = await orderServices.viewOrderDetails(orderId, userId);
     } catch(err) {
         next(err);
     }

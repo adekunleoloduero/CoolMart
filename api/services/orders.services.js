@@ -8,33 +8,19 @@ const createOrder = async(payload) => {
 
 
 const getOrders = async() => {
-    const orders = await orderModel.find()
-    .populate("user", "-password")
-    .populate({
-        path: "products",
-        populate: {
-            path: "product"
-        }
-    });
+    const orders = await orderModel.find();
     return orders;
 }
 
 
 const getUserOrders = async(userId) => {
-    const orders = await orderModel.find({ user: userId})
-    .populate("user", "-password")
-    .populate({
-        path: "products",
-        populate: {
-            path: "product"
-        }
-    });
+    const orders = await orderModel.find({ user: userId});
     return orders;
 }
 
 
-const getUserOrderById = async (orderId, userId) => {
-    const order = await orderModel.findOne({_id: orderId, user: userId})
+const viewOrderDetails = async (orderId, customerId) => {
+    const order = await orderModel.findOne({_id: orderId, user: customerId})
     .populate("user", "-password")
     .populate({
         path: "products",
@@ -62,7 +48,7 @@ module.exports = {
     createOrder,
     getOrders,
     getUserOrders,
-    getUserOrderById,
+    viewOrderDetails,
     updateOrder,
     deleteOrder
 }

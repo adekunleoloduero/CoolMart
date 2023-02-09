@@ -15,7 +15,7 @@ router.get('/find/:id', authenticateUser, authorizeAdminOnly, userController.get
 
 
 //Update user profile
-router.put('/update/:id', authenticateUser, authorizeUserOrAdmin, userController.updateUserProfile);
+router.patch('/update/:id', authenticateUser, authorizeUserOrAdmin, userController.updateUserProfile);
 
 
 //Delete user

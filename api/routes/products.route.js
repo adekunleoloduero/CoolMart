@@ -4,7 +4,7 @@ const { authenticateUser, authorizeAdminOnly } = require('../middleware/auth.mid
 
 
 //Add a new product
-router.post('/add_new', authenticateUser, authorizeAdminOnly, productController.addProduct)
+router.post('/add', authenticateUser, authorizeAdminOnly, productController.addProduct)
 
 
 //Get all products
@@ -16,7 +16,7 @@ router.get('/:id', productController.getProductById);
 
 
 //Update a product
-router.put('/update/:id', authenticateUser, authorizeAdminOnly, productController.updateProduct);
+router.patch('/update/:id', authenticateUser, authorizeAdminOnly, productController.updateProduct);
 
 
 //Delete a product

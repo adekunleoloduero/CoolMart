@@ -4,7 +4,8 @@ const { Schema, model } = mongoose;
 
 const paymentSchema = new Schema({
     reference: {
-        type: String
+        type: String,
+        required: true
     },
     amount: {
         type: Number,

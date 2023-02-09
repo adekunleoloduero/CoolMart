@@ -13,11 +13,14 @@ router.get('/', authenticateUser, authorizeAdminOnly, orderController.getOrders)
 
 
 //Get user orders
-router.get('/view/:userId', authenticateUser, authorizeUserOrAdmin, orderController.getUserOrders);
+router.get('/:userId', authenticateUser, authorizeUserOrAdmin, orderController.getUserOrders);
 
+
+//View an order in details
+router.get('/view-details/:orderId/:userId', authenticateUser, authorizeUserOrAdmin, orderController.viewOrderDetails)
 
 //Update an order
-router.put('/update/:id', authenticateUser, authorizeAdminOnly, orderController.updateOrder);
+router.patch('/update/:id', authenticateUser, authorizeAdminOnly, orderController.updateOrder);
 
 
 //Delete an order

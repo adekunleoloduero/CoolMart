@@ -4,7 +4,7 @@ const productModel = require('../models/product.model');
 
 const addProduct = async(payload) => {
     const product = await productModel.create(payload);
-    return payload;
+    return product;
 }
 
 

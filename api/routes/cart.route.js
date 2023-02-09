@@ -13,11 +13,11 @@ router.get('/', authenticateUser, authorizeAdminOnly, cartController.getCarts);
 
 
 //Get user cart
-router.get('/view/:userId', authenticateUser, cartController.getUserCart);
+router.get('/view-cart', authenticateUser, cartController.getUserCart);
 
 
 //Update cart
-router.put('/update/:id', authenticateUser, cartController.updateCart);
+router.patch('/update/:id', authenticateUser, cartController.updateCart);
 
 
 //Delete cart

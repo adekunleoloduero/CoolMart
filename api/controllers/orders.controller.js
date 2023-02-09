@@ -34,6 +34,17 @@ const getUserOrders = async(req, res, next) => {
 }
 
 
+const viewOrderDetails = async(req, res, next) => {
+    const userId = req.params.userId;
+    const orderId = req.params.orderId;
+    try {
+        const response = await orderServices.viewOrderDetails(orderId, userId);
+        res.status(200).json(response);
+    } catch(err) {
+        next(err);
+    }
+}
+
 
 const updateOrder = async(req, res, next) => {
     const id = req.params.id;
@@ -67,6 +78,7 @@ module.exports = {
     createOrder,
     getOrders,
     getUserOrders,
+    viewOrderDetails,
     updateOrder,
     deleteOrder,
     processingOrder

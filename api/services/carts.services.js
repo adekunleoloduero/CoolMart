@@ -21,8 +21,8 @@ const getCarts = async() => {
 }
 
 
-const getUserCart = async(userId) => {
-    const cart = await cartModel.findOne({ user: userId})
+const getUserCart = async (userId) => {
+    const cart = await cartModel.find({ user: userId})
     .populate("user", "-password")
     .populate({
         path: "products",
@@ -41,8 +41,8 @@ const updateCart = async(id, body) => {
 
 const deleteCart = async(id) => {
     const deletedCart = await cartModel.findByIdAndDelete(id);
-    if (!deletedCart) return { message: 'Cart is already deleted.' };
-    return { message:  'Cart has been deleted.'};
+    if (!deletedCart) return { message: 'Cart is empty.' };
+    return { message:  'Your cart is not empty.'};
 }
 
 
