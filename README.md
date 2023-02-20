@@ -1,11 +1,100 @@
 # CoolMart API Documentation
 
+
+<br><br>
+## Content
+
+[Introduction](#introduction)
+
+[Setup](#setup)
+
+[Models](#models)
+
+[API](#api)
+
+&nbsp;&nbsp;&nbsp;[1. Auth](#1-auth)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Signup](#signup)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Signin](#signin)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Logout](#logout)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Reset pasword](#reset-password)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Extract userId & resetToken from password reset link](#extract-userid-and-resettoken-from-password-reset-link)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Change password](#change-password)
+
+&nbsp;&nbsp;&nbsp;[2. User managment](#2-user-management)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Get all users](#get-all-users)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Get user by ID](#get-user-by-id)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Update user profile](#update-user-profile)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Delete user account](#delete-user-account)
+
+&nbsp;&nbsp;&nbsp;[3. Product](#product)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Add a prouduct](#add-a-product)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Get all products](#get-all-products)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Get a product by ID](#get-a-product-by-id)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Update a product](#update-a-product)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Delete a product](#delete-a-product)
+
+&nbsp;&nbsp;&nbsp;[4. Cart](#cart)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Create a cart](#add-a-product)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Get all carts](#get-all-carts)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[View cart](#view-cart)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Update cart](#update-cart)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Clear cart](#clear-cart)
+
+&nbsp;&nbsp;&nbsp;[5. Order](#order)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Create an order](#create-an-order)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Get all orders](#get-all-orders)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Get all orders by a specific customer](#get-all-orders-by-a-specific-customer)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[View details of an order](#view-details-of-an-order)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Update of an order](#update-an-order)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Delete an order](#delete-an-order)
+
+&nbsp;&nbsp;&nbsp;[6. Paystack checkout](#paystack-checkout)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Initialize payment](#initialize-payment)
+
+<br><br>
 ## Introduction
 CoolMart is an ecommerce API system.
 
-This documentation describes the usage of CoolMart API collection and structure of defined entities (Models).
+This documentation describes the usage of CoolMart API collection and structure of defined entities (Models). 
+
+There are two (2) types of users in the system, namely admin and customer. The user type is specified as a value of the `role` property in the [user model](#1-user). Following from this, three (3) levels of authorization are defined. These are encapsulated in the following middlewares, `authorizeAdminOnly`, `authorizeUser` and `authorizeUserOrAdmin`.
+
+Furthermore, with the exception of routes that are prefixed with`/auth`, the user is required to be logged in or authenticated to access a given route. Authentication is done with the access token extracted from cookies.
+
+
+#### [Go to Content](#content)
 
 <br><br>
+
+
+
 
 ## Setup
 - Clone the repository
@@ -104,6 +193,7 @@ _Products_
 | createdAt | Date | |
 | updatedAt | Date | |
 
+#### [Go to Content](#content)
 
 <br><br>
 
@@ -280,7 +370,7 @@ Response:
 
 ---
 
-### **Extract userId & resetToken from password reset link**
+### **Extract userId and resetToken from password reset link**
 
 Method - `POST`
 
@@ -328,8 +418,8 @@ body (JSON):
 
 ```json
 {
-    "password": "sheriffade123",
-    "confirmPassword": "sheriffade123",
+    "password": "testcustomer123",
+    "confirmPassword": "testcustomer123",
     "userId": "63e3afd3d36a4b06ccd9f7e6",
     "resetToken": "21b8ff5fba8a969b5735444fed0d457856e25f5b09028c4792e4011d0247be26"
 }
@@ -356,6 +446,7 @@ Response:
 
 ```
 
+#### [Go to Content](#content)
 ---
 ## 2. User Management
 <br>
@@ -465,7 +556,7 @@ Route - `http://baseurl:port/api/users/find/:id`
 
 Authentication - `cookies.access_token`
 
-Authorization - Admin
+Authorization - authorizeAdmin
 
 **Example Request:**
 
@@ -522,7 +613,7 @@ Route - `http://baseurl:port/api/users/update/:id`
 
 Authentication - `cookies.access_token`
 
-Authorization - Admin or Logged in user
+Authorization - authorizeAdminOrUser
 
 **Example Request:**
 
@@ -587,7 +678,7 @@ Route - `http://baseurl:port/api/users/delete/:id`
 
 Authentication - `cookies.access_token`
 
-Authorization - Admin or Logged in user
+Authorization - authorizeAdminOrUser
 
 **Example Request:**
 
@@ -634,6 +725,8 @@ Response:
 }
 ```
 
+#### [Go to Content](#content)
+
 ---
 ## 3. Product
 <br>
@@ -646,7 +739,7 @@ Response:
 
 - Authentication - `cookies.access_token`
 
-- Authorization - Admin
+- Authorization - authorizeAdmin
 
 **Example Request:**
 
@@ -725,7 +818,7 @@ Response:
 
 - Authentication - `cookies.access_token`
 
-- Authorization - Admin
+- Authorization - authorizeAdmin
 
 **Example Request:**
 
@@ -822,7 +915,7 @@ Response:
 
 - Authentication - `cookies.access_token`
 
-- Authorization - Admin
+- Authorization - authorizeAdmin
 
 **Example Request:**
 
@@ -883,7 +976,7 @@ Response:
 
 - Authentication - `cookies.access_token`
 
-- Authorization - Admin
+- Authorization - authorizeAdmin
 
 **Example Request:**
 
@@ -953,7 +1046,7 @@ Response:
 
 - Authentication - `cookies.access_token`
 
-- Authorization - Admin
+- Authorization - authorizeAdmin
 
 **Example Request:**
 
@@ -996,6 +1089,8 @@ Response:
     "message": "Item already deleted"
 }
 ```
+
+#### [Go to Content](#content)
 
 ---
 ## 4. Cart
@@ -1078,7 +1173,7 @@ Response:
 
 - Authentication - `cookies.access_token`
 
-- Authorization - Admin
+- Authorization - authorizeAdmin
 
 **Example Request:**
 
@@ -1502,6 +1597,8 @@ Response:
 }
 ```
 
+#### [Go to Content](#content)
+
 ---
 ## 5. Order
 <br>
@@ -1588,7 +1685,7 @@ Response:
 
 - Authentication - `cookies.access_token`
 
-- Authorization - Admin
+- Authorization - authorizeAdmin
 
 **Example Request:**
 
@@ -1693,7 +1790,7 @@ Response:
 
 - Authentication - `cookies.access_token`
 
-- Authorization - Admin, creator of orders
+- Authorization - authorizeUserOrAdmin
 
 **Example Request:**
 
@@ -1781,7 +1878,7 @@ Response:
 
 - Authentication - `cookies.access_token`
 
-- Authorization - Admin, Creator of the order
+- Authorization - authorizeUserOrAdmin
 
 **Example Request:**
 
@@ -1888,7 +1985,7 @@ Response:
 
 - Authentication - `cookies.access_token`
 
-- Authorization - Admin
+- Authorization - authorizeAdmin
 
 **Example Request:**
 
@@ -1961,7 +2058,7 @@ Response:
 
 - Authentication - `cookies.access_token`
 
-- Authorization - Admin
+- Authorization - authorizeAdmin
 
 **Example Request:**
 
@@ -2004,6 +2101,8 @@ Response:
     "message": "Order already deleted."
 }
 ```
+#### [Go to Content](#content)
+
 ---
 ## 6. Paystack Checkout
 
@@ -2019,7 +2118,7 @@ Response:
 
 - Authentication - `cookies.access_token`
 
-- Authorization - Creator of the order
+- Authorization - authorizeUser
 
 **Example Request:**
 
@@ -2041,7 +2140,7 @@ Response:
     "message": "User must be logged in."
 }
 ```
-
+#### [Go to Content](#content)
 
 <br><br>
 
